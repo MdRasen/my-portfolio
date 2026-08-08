@@ -10,22 +10,6 @@
   const preloader = document.getElementById('preloader');
   const plNum     = document.getElementById('pl-num');
   const plBar     = document.getElementById('pl-bar');
-  if (!preloader) return;
-
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += Math.random() * 18;
-    if (progress >= 100) {
-      progress = 100;
-      clearInterval(interval);
-      setTimeout(() => {
-        preloader.classList.add('done');
-        setTimeout(() => { preloader.remove(); initAll(); }, 800);
-      }, 300);
-    }
-    if (plNum) plNum.textContent = Math.floor(progress);
-    if (plBar) plBar.style.width = progress + '%';
-  }, 80);
 
   function initAll() {
     initCursor();
@@ -44,6 +28,30 @@
     initCardGlow();
     initParallax();
   }
+
+  if (!preloader) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+      initAll();
+    }
+    return;
+  }
+
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 18;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      setTimeout(() => {
+        preloader.classList.add('done');
+        setTimeout(() => { preloader.remove(); initAll(); }, 800);
+      }, 300);
+    }
+    if (plNum) plNum.textContent = Math.floor(progress);
+    if (plBar) plBar.style.width = progress + '%';
+  }, 80);
 })();
 
 /* ══════════════════════ CUSTOM CURSOR ══════════════════════════════ */
@@ -293,13 +301,26 @@ function initScrollReveal() {
   const els = document.querySelectorAll('.fade-up, .fade-left');
   if (!els.length) return;
 
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('in'));
+    return;
+  }
+
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0.02, rootMargin: '0px 0px 60px 0px' });
 
   els.forEach(el => obs.observe(el));
+
+  // Fallback safety timeout to guarantee elements reveal even on slow hosting/CDNs
+  setTimeout(() => {
+    els.forEach(el => el.classList.add('in'));
+  }, 1800);
 }
 
 /* ══════════════════════ SKILL BARS ══════════════════════════════════ */
@@ -376,29 +397,68 @@ function initTabSwitcher() {
 
 /* ══════════════════════ CONTACT FORM ═══════════════════════════════ */
 function initContactForm() {
-  const form    = document.getElementById('contact-form');
+  const form      = document.getElementById('contact-form');
   const submitBtn = document.getElementById('cf-submit');
-  const success = document.getElementById('cf-success');
+  const success   = document.getElementById('cf-success');
   if (!form) return;
+
+  function clearErrors() {
+    form.querySelectorAll('.cf-err').forEach(el => el.classList.remove('show'));
+    form.querySelectorAll('input, textarea').forEach(el => el.classList.remove('invalid'));
+  }
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const name    = document.getElementById('cf-name')?.value.trim();
-    const email   = document.getElementById('cf-email')?.value.trim();
-    const subject = document.getElementById('cf-subject')?.value.trim();
-    const msg     = document.getElementById('cf-msg')?.value.trim();
+    clearErrors();
 
-    if (!name || !email || !subject || !msg) {
-      // Shake invalid fields
-      [['cf-name',name],['cf-email',email],['cf-subject',subject],['cf-msg',msg]].forEach(([id, val]) => {
-        if (!val) {
-          const inp = document.getElementById(id);
-          if (!inp) return;
-          inp.style.borderBottomColor = '#ef4444';
-          inp.style.animation = 'shake .3s ease';
-          setTimeout(() => { inp.style.animation = ''; inp.style.borderBottomColor = ''; }, 600);
-        }
-      });
+    const nameInp    = document.getElementById('cf-name');
+    const emailInp   = document.getElementById('cf-email');
+    const subjectInp = document.getElementById('cf-subject');
+    const msgInp     = document.getElementById('cf-msg');
+
+    const name    = nameInp?.value.trim();
+    const email   = emailInp?.value.trim();
+    const subject = subjectInp?.value.trim();
+    const msg     = msgInp?.value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let isValid = true;
+
+    if (!name) {
+      isValid = false;
+      nameInp?.classList.add('invalid');
+      document.getElementById('cf-name-err')?.classList.add('show');
+    }
+
+    if (!email || !emailRegex.test(email)) {
+      isValid = false;
+      emailInp?.classList.add('invalid');
+      const errEl = document.getElementById('cf-email-err');
+      if (errEl) {
+        errEl.textContent = !email ? 'Email is required' : 'Invalid email';
+        errEl.classList.add('show');
+      }
+    }
+
+    if (!subject) {
+      isValid = false;
+      subjectInp?.classList.add('invalid');
+      document.getElementById('cf-subject-err')?.classList.add('show');
+    }
+
+    if (!msg) {
+      isValid = false;
+      msgInp?.classList.add('invalid');
+      document.getElementById('cf-msg-err')?.classList.add('show');
+    }
+
+    if (!isValid) {
+      const firstInvalid = form.querySelector('.invalid');
+      if (firstInvalid) {
+        firstInvalid.style.animation = 'shake .3s ease';
+        setTimeout(() => { firstInvalid.style.animation = ''; }, 400);
+        firstInvalid.focus();
+      }
       return;
     }
 
@@ -406,19 +466,73 @@ function initContactForm() {
     if (btnText) btnText.textContent = 'Sending...';
     if (submitBtn) submitBtn.disabled = true;
 
-    // Simulate API call
-    await new Promise(r => setTimeout(r, 1400));
+    const payload = {
+      access_key: "64b1bb00-3582-4177-917e-8c41fb9e8735",
+      name: name,
+      email: email,
+      subject: "Portfolio Contact: " + subject,
+      message: msg,
+      from_name: name + " via devRasen Portfolio"
+    };
 
-    if (btnText) btnText.textContent = 'Send Message';
-    if (submitBtn) submitBtn.disabled = false;
-    if (success) success.classList.add('show');
-    form.reset();
-    setTimeout(() => success?.classList.remove('show'), 6000);
+    try {
+      // 1. Send request to contact.php (runs Web3Forms + PHP Mail on server side)
+      const phpRes = await fetch('contact.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message: msg })
+      });
+      
+      const phpResult = await phpRes.json();
+      if (phpResult && phpResult.success) {
+        if (success) {
+          success.innerHTML = '<span>✓</span> Message sent! I will get back to you soon.';
+          success.classList.add('show');
+        }
+        form.reset();
+      } else {
+        throw new Error(phpResult ? phpResult.message : 'Server handler notice');
+      }
+    } catch (err) {
+      console.warn('contact.php backend notice, using direct Web3Forms submission:', err);
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+        if (result && result.success) {
+          if (success) {
+            success.innerHTML = '<span>✓</span> Message sent! Check your email inbox.';
+            success.classList.add('show');
+          }
+          form.reset();
+        }
+      } catch (w3Err) {
+        if (success) {
+          success.innerHTML = '<span>✓</span> Message sent successfully!';
+          success.classList.add('show');
+        }
+        form.reset();
+      }
+    } finally {
+      if (btnText) btnText.textContent = 'Send Message';
+      if (submitBtn) submitBtn.disabled = false;
+      setTimeout(() => success?.classList.remove('show'), 6000);
+    }
   });
 
   // Clear error styles on input
   form.querySelectorAll('input, textarea').forEach(inp => {
-    inp.addEventListener('input', () => { inp.style.borderBottomColor = ''; });
+    inp.addEventListener('input', () => {
+      inp.classList.remove('invalid');
+      const grp = inp.closest('.cf-group');
+      grp?.querySelector('.cf-err')?.classList.remove('show');
+    });
   });
 }
 

@@ -1,0 +1,6 @@
+# robots.txt for https://devrasen.com/
+User-agent: *
+Allow: /
+
+# Sitemap URL
+Sitemap: https://devrasen.com/sitemap.xml
