@@ -1,723 +1,865 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Md Al Amin Hossen — Full-Stack Developer</title>
-<meta name="description" content="Md Al Amin Hossen (devRasen) — Dhaka-based full-stack developer. Laravel, React, UI/UX. Available for freelance.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Md Al Amin Hossen — Full-Stack Developer</title>
+  <meta name="description"
+    content="Md Al Amin Hossen (devRasen) — Dhaka-based full-stack developer. Laravel, React, UI/UX. Available for freelance.">
 
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="shortcut icon" href="favicon.ico">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital@0;1&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- ═══════════════════════════════ PRELOADER ══════════════════════════════ -->
-<div id="preloader">
-  <div class="pl-content">
-    <div class="pl-counter"><span id="pl-num">0</span><span class="pl-pct">%</span></div>
-    <div class="pl-bar-wrap"><div class="pl-bar" id="pl-bar"></div></div>
-    <div class="pl-label">LOADING PORTFOLIO</div>
+  <!-- ═══════════════════════════════ PRELOADER ══════════════════════════════ -->
+  <div id="preloader">
+    <div class="pl-content">
+      <div class="pl-counter"><span id="pl-num">0</span><span class="pl-pct">%</span></div>
+      <div class="pl-bar-wrap">
+        <div class="pl-bar" id="pl-bar"></div>
+      </div>
+      <div class="pl-label">LOADING PORTFOLIO</div>
+    </div>
   </div>
-</div>
 
-<!-- ═══════════════════════════════ CURSOR ════════════════════════════════ -->
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
+  <!-- ═══════════════════════════════ CURSOR ════════════════════════════════ -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
 
-<!-- ═══════════════════════════════ PROGRESS ══════════════════════════════ -->
-<div id="scroll-progress"></div>
+  <!-- ═══════════════════════════════ PROGRESS ══════════════════════════════ -->
+  <div id="scroll-progress"></div>
 
-<!-- ═══════════════════════════════ NAVBAR ════════════════════════════════ -->
-<nav id="navbar">
-  <div class="nav-container">
-    <a href="#hero" class="logo" id="logo-link">
-      <span class="logo-dev">dev</span><span class="logo-rasen">Rasen</span>
-    </a>
-    <ul class="nav-links" role="list">
-      <li><a href="#hero"     class="nl" data-s="hero">Home</a></li>
-      <li><a href="#about"    class="nl" data-s="about">About</a></li>
-      <li><a href="#services" class="nl" data-s="services">Services</a></li>
-      <li><a href="#works"    class="nl" data-s="works">Works</a></li>
-      <li><a href="#contact"  class="nl" data-s="contact">Contact</a></li>
+  <!-- ═══════════════════════════════ NAVBAR ════════════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="logo" id="logo-link">
+        <span class="logo-dev">dev</span><span class="logo-rasen">Rasen</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#hero" class="nl" data-s="hero">Home</a></li>
+        <li><a href="#about" class="nl" data-s="about">About</a></li>
+        <li><a href="#services" class="nl" data-s="services">Services</a></li>
+        <li><a href="#works" class="nl" data-s="works">Works</a></li>
+        <li><a href="#contact" class="nl" data-s="contact">Contact</a></li>
+      </ul>
+      <a href="mailto:info@devrasen.com" class="nav-cta" id="nav-cta">Let's Talk</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="mob-overlay" id="mob-overlay">
+    <button class="mob-close" id="mob-close" aria-label="Close">✕</button>
+    <ul class="mob-links" role="list">
+      <li><a href="#hero" class="mol" onclick="closeMob()">Home</a></li>
+      <li><a href="#about" class="mol" onclick="closeMob()">About</a></li>
+      <li><a href="#services" class="mol" onclick="closeMob()">Services</a></li>
+      <li><a href="#works" class="mol" onclick="closeMob()">Works</a></li>
+      <li><a href="#contact" class="mol" onclick="closeMob()">Contact</a></li>
     </ul>
-    <a href="mailto:info@devrasen.com" class="nav-cta" id="nav-cta">Let's Talk</a>
-    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- Mobile nav overlay -->
-<div class="mob-overlay" id="mob-overlay">
-  <button class="mob-close" id="mob-close" aria-label="Close">✕</button>
-  <ul class="mob-links" role="list">
-    <li><a href="#hero"     class="mol" onclick="closeMob()">Home</a></li>
-    <li><a href="#about"    class="mol" onclick="closeMob()">About</a></li>
-    <li><a href="#services" class="mol" onclick="closeMob()">Services</a></li>
-    <li><a href="#works"    class="mol" onclick="closeMob()">Works</a></li>
-    <li><a href="#contact"  class="mol" onclick="closeMob()">Contact</a></li>
-  </ul>
-  <div class="mob-footer">
-    <a href="mailto:info@devrasen.com">info@devrasen.com</a>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════ HERO ══════════════════════════════════ -->
-<section id="hero">
-  <!-- Animated mesh background -->
-  <canvas id="hero-canvas"></canvas>
-
-  <div class="hero-inner container">
-    <!-- Left: Text Content -->
-    <div class="hero-text">
-      <div class="hero-availability fade-up">
-        <span class="avail-pulse"></span>
-        <span>Available for Freelance Work</span>
-      </div>
-
-      <h1 class="hero-title">
-        <span class="ht-line fade-up d1">Full-Stack</span>
-        <span class="ht-line ht-name fade-up d2">Developer<span class="dot">.</span></span>
-      </h1>
-
-      <div class="hero-typewriter fade-up d3">
-        <span class="tw-prefix">I build</span>
-        <span class="tw-text" id="typewriter"></span>
-        <span class="tw-cursor">|</span>
-      </div>
-
-      <p class="hero-bio fade-up d4">
-        Crafting high-performance web applications with clean code and exceptional user experiences.
-        Based in <strong>Dhaka, Bangladesh</strong>.
-      </p>
-
-      <div class="hero-actions fade-up d5">
-        <a href="#works" class="btn-primary">
-          View My Work
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <a href="#contact" class="btn-ghost">Let's Talk</a>
-      </div>
-
-      <!-- Stats row -->
-      <div class="hero-stats fade-up d6">
-        <div class="hstat">
-          <span class="hstat-n" data-target="7">0</span><span class="hstat-plus">+</span>
-          <span class="hstat-l">Years Exp.</span>
-        </div>
-        <div class="hstat-div"></div>
-        <div class="hstat">
-          <span class="hstat-n" data-target="100">0</span><span class="hstat-plus">+</span>
-          <span class="hstat-l">Clients</span>
-        </div>
-        <div class="hstat-div"></div>
-        <div class="hstat">
-          <span class="hstat-n" data-target="210">0</span><span class="hstat-plus">+</span>
-          <span class="hstat-l">Projects</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right: Photo + floating badges -->
-    <div class="hero-visual fade-up d2">
-      <div class="hero-img-wrap">
-        <div class="img-glow"></div>
-        <img src="assets/me.png" alt="Md Al Amin Hossen — Full-Stack Developer" class="hero-img" id="hero-img">
-        <!-- Floating tech badges -->
-        <div class="float-badge fb-1">
-          <span class="fb-icon">⚡</span>Laravel
-        </div>
-        <div class="float-badge fb-2">
-          <span class="fb-icon">⚛️</span>React
-        </div>
-        <div class="float-badge fb-3">
-          <span class="fb-icon">🎨</span>UI/UX
-        </div>
-        <!-- Decorative rings -->
-        <div class="deco-ring r1"></div>
-        <div class="deco-ring r2"></div>
-      </div>
+    <div class="mob-footer">
+      <a href="mailto:info@devrasen.com">info@devrasen.com</a>
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <div class="scroll-hint fade-up d6">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
+  <!-- ═══════════════════════════════ HERO ══════════════════════════════════ -->
+  <section id="hero">
+    <!-- Animated mesh background -->
+    <canvas id="hero-canvas"></canvas>
 
-<!-- Marquee strip -->
-<div class="marquee-strip">
-  <div class="marquee-track">
-    <span>Web Development</span><span class="mx-dot">✦</span>
-    <span>UI/UX Design</span><span class="mx-dot">✦</span>
-    <span>Laravel</span><span class="mx-dot">✦</span>
-    <span>React.js</span><span class="mx-dot">✦</span>
-    <span>SEO Optimization</span><span class="mx-dot">✦</span>
-    <span>Full-Stack</span><span class="mx-dot">✦</span>
-    <span>Available For Hire</span><span class="mx-dot">✦</span>
-    <span>Web Development</span><span class="mx-dot">✦</span>
-    <span>UI/UX Design</span><span class="mx-dot">✦</span>
-    <span>Laravel</span><span class="mx-dot">✦</span>
-    <span>React.js</span><span class="mx-dot">✦</span>
-    <span>SEO Optimization</span><span class="mx-dot">✦</span>
-    <span>Full-Stack</span><span class="mx-dot">✦</span>
-    <span>Available For Hire</span><span class="mx-dot">✦</span>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════ ABOUT ═════════════════════════════════ -->
-<section id="about" class="section">
-  <div class="container">
-    <div class="about-grid">
-
-      <!-- Image column -->
-      <div class="about-img-col">
-        <div class="about-img-frame fade-left">
-          <img src="assets/me.png" alt="Md Al Amin Hossen" class="about-img">
-          <div class="about-img-overlay">
-            <div class="about-img-tag">
-              <span class="avail-pulse sm"></span>Open to Work
-            </div>
-          </div>
-          <!-- Decorative corner accents -->
-          <div class="corner-tl"></div>
-          <div class="corner-br"></div>
+    <div class="hero-inner container">
+      <!-- Left: Text Content -->
+      <div class="hero-text">
+        <div class="hero-availability fade-up">
+          <span class="avail-pulse"></span>
+          <span>Available for Freelance Work</span>
         </div>
 
-        <!-- Info cards below image -->
-        <div class="info-cards fade-left d2">
-          <div class="info-card">
-            <span class="info-icon">📍</span>
-            <div>
-              <div class="info-label">Location</div>
-              <div class="info-value">Dhaka, Bangladesh</div>
-            </div>
-          </div>
-          <div class="info-card">
-            <span class="info-icon">🎓</span>
-            <div>
-              <div class="info-label">Education</div>
-              <div class="info-value">BSc CS&E, AIUB</div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <h1 class="hero-title">
+          <span class="ht-line fade-up d1">Full-Stack</span>
+          <span class="ht-line ht-name fade-up d2">Developer<span class="dot">.</span></span>
+        </h1>
 
-      <!-- Content column -->
-      <div class="about-content">
-        <div class="section-tag fade-up">ABOUT ME</div>
-        <h2 class="section-title fade-up d1">
-          Crafting Digital<br><span class="title-accent">Experiences</span>
-        </h2>
-        <p class="about-bio fade-up d2">
-          I'm a Dhaka-based full-stack developer with 7+ years of experience building
-          dynamic, visually engaging web applications. I specialize in bridging the gap
-          between clean code and beautiful design — creating products that both work
-          flawlessly and look stunning.
-        </p>
-        <p class="about-bio fade-up d3">
-          My stack spans from <strong>Laravel APIs</strong> to <strong>React frontends</strong>,
-          with a strong eye for <strong>UI/UX</strong>. Whether it's a startup MVP or an enterprise
-          platform, I bring the same level of craft and attention to detail.
+        <div class="hero-typewriter fade-up d3">
+          <span class="tw-prefix">I build</span>
+          <span class="tw-text" id="typewriter"></span>
+          <span class="tw-cursor">|</span>
+        </div>
+
+        <p class="hero-bio fade-up d4">
+          Crafting high-performance web applications with clean code and exceptional user experiences.
+          Based in <strong>Dhaka, Bangladesh</strong>.
         </p>
 
-        <!-- Skills -->
-        <div class="skills-wrap fade-up d3">
-          <div class="skills-label">Core Expertise</div>
-          <div class="skills-list">
-            <div class="skill-item">
-              <div class="skill-header"><span>PHP / Laravel</span><span>92%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-w="92"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header"><span>JavaScript / React</span><span>87%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-w="87"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header"><span>HTML / CSS / Tailwind</span><span>96%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-w="96"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header"><span>UI/UX Design (Figma)</span><span>80%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-w="80"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header"><span>WordPress</span><span>93%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-w="93"></div></div>
-            </div>
-          </div>
+        <div class="hero-actions fade-up d5">
+          <a href="#works" class="btn-primary">
+            View My Work
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+          <a href="#contact" class="btn-ghost">Let's Talk</a>
         </div>
 
-        <!-- Tech stack pills -->
-        <div class="tech-stack fade-up d4">
-          <div class="ts-label">Tech Stack</div>
-          <div class="ts-pills">
-            <span class="ts-pill">PHP</span><span class="ts-pill">Laravel</span>
-            <span class="ts-pill">React.js</span><span class="ts-pill">JavaScript</span>
-            <span class="ts-pill">HTML5</span><span class="ts-pill">CSS3</span>
-            <span class="ts-pill">Tailwind</span><span class="ts-pill">MySQL</span>
-            <span class="ts-pill">REST API</span><span class="ts-pill">WordPress</span>
-            <span class="ts-pill">Git</span><span class="ts-pill">Figma</span>
-            <span class="ts-pill">Three.js</span><span class="ts-pill">React Native</span>
+        <!-- Stats row -->
+        <div class="hero-stats fade-up d6">
+          <div class="hstat">
+            <span class="hstat-n" data-target="7">0</span><span class="hstat-plus">+</span>
+            <span class="hstat-l">Years Exp.</span>
           </div>
-        </div>
-
-        <!-- Timeline tabs -->
-        <div class="timeline-tabs fade-up d4">
-          <div class="tt-buttons">
-            <button class="tt-btn active" data-tab="exp">Experience</button>
-            <button class="tt-btn" data-tab="edu">Education</button>
+          <div class="hstat-div"></div>
+          <div class="hstat">
+            <span class="hstat-n" data-target="100">0</span><span class="hstat-plus">+</span>
+            <span class="hstat-l">Clients</span>
           </div>
-          <div class="tt-content" id="tab-exp">
-            <div class="tl-item">
-              <div class="tl-year">2017 — Present</div>
-              <div class="tl-body">
-                <div class="tl-title">WordPress Developer</div>
-                <div class="tl-org">Freelance</div>
-              </div>
-            </div>
-            <div class="tl-item">
-              <div class="tl-year">2022 — 2023</div>
-              <div class="tl-body">
-                <div class="tl-title">Web Developer</div>
-                <div class="tl-org">Web For Solutions Ltd</div>
-              </div>
-            </div>
-            <div class="tl-item">
-              <div class="tl-year">2021 — 2022</div>
-              <div class="tl-body">
-                <div class="tl-title">Co-Founder</div>
-                <div class="tl-org">The Authentic Store</div>
-              </div>
-            </div>
-          </div>
-          <div class="tt-content hidden" id="tab-edu">
-            <div class="tl-item">
-              <div class="tl-year">2019 — 2023</div>
-              <div class="tl-body">
-                <div class="tl-title">BSc in Computer Science & Engineering</div>
-                <div class="tl-org">American International University Bangladesh</div>
-              </div>
-            </div>
-            <div class="tl-item">
-              <div class="tl-year">2016 — 2018</div>
-              <div class="tl-body">
-                <div class="tl-title">Higher Secondary Certificate (HSC)</div>
-                <div class="tl-org">Dhaka Imperial College (DIC)</div>
-              </div>
-            </div>
-            <div class="tl-item">
-              <div class="tl-year">2014 — 2016</div>
-              <div class="tl-body">
-                <div class="tl-title">Secondary School Certificate (SSC)</div>
-                <div class="tl-org">Faizur Rahman Ideal Institute</div>
-              </div>
-            </div>
+          <div class="hstat-div"></div>
+          <div class="hstat">
+            <span class="hstat-n" data-target="210">0</span><span class="hstat-plus">+</span>
+            <span class="hstat-l">Projects</span>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════════════ SERVICES ══════════════════════════════ -->
-<section id="services" class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag fade-up">WHAT I DO</div>
-      <h2 class="section-title fade-up d1">My <span class="title-accent">Services</span></h2>
-      <p class="section-sub fade-up d2">End-to-end solutions from design to deployment</p>
-    </div>
-
-    <div class="services-grid">
-      <div class="svc-card fade-up d1">
-        <div class="svc-num">01</div>
-        <div class="svc-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
-        <h3>Web Development</h3>
-        <p>Custom web applications built for scale. From RESTful APIs to full-stack platforms — clean, performant, production-ready code.</p>
-        <div class="svc-tags"><span>Laravel</span><span>React</span><span>MySQL</span></div>
-        <div class="svc-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </div>
-      </div>
-
-      <div class="svc-card fade-up d2">
-        <div class="svc-num">02</div>
-        <div class="svc-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
-        <h3>UI/UX Design</h3>
-        <p>Interfaces that feel intuitive and look stunning. Wireframes, prototypes, and pixel-perfect designs that convert visitors into users.</p>
-        <div class="svc-tags"><span>Figma</span><span>Prototyping</span><span>Design Systems</span></div>
-        <div class="svc-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </div>
-      </div>
-
-      <div class="svc-card fade-up d3">
-        <div class="svc-num">03</div>
-        <div class="svc-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
-        </div>
-        <h3>Web Designing</h3>
-        <p>Visually stunning, fully responsive websites that work flawlessly on every device — delivering experiences that make brands memorable.</p>
-        <div class="svc-tags"><span>Responsive</span><span>CSS</span><span>Tailwind</span></div>
-        <div class="svc-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </div>
-      </div>
-
-      <div class="svc-card fade-up d4">
-        <div class="svc-num">04</div>
-        <div class="svc-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        </div>
-        <h3>SEO Optimization</h3>
-        <p>Technical SEO strategies that get you ranked. From site structure audits to on-page optimization — driving real organic traffic growth.</p>
-        <div class="svc-tags"><span>Technical SEO</span><span>Analytics</span><span>Performance</span></div>
-        <div class="svc-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      <!-- Right: Photo + floating badges -->
+      <div class="hero-visual fade-up d2">
+        <div class="hero-img-wrap">
+          <div class="img-glow"></div>
+          <img src="assets/me.png" alt="Md Al Amin Hossen — Full-Stack Developer" class="hero-img" id="hero-img">
+          <!-- Floating tech badges -->
+          <div class="float-badge fb-1">
+            <span class="fb-icon">⚡</span>Laravel
+          </div>
+          <div class="float-badge fb-2">
+            <span class="fb-icon">⚛️</span>React
+          </div>
+          <div class="float-badge fb-3">
+            <span class="fb-icon">🎨</span>UI/UX
+          </div>
+          <!-- Decorative rings -->
+          <div class="deco-ring r1"></div>
+          <div class="deco-ring r2"></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════════════ WORKS ═════════════════════════════════ -->
-<section id="works" class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag fade-up">PORTFOLIO</div>
-      <h2 class="section-title fade-up d1">Featured <span class="title-accent">Projects</span></h2>
-    </div>
-
-    <!-- Filter buttons -->
-    <div class="works-filters fade-up d2">
-      <button class="wf-btn active" data-f="all">All Projects</button>
-      <button class="wf-btn" data-f="web">Web Dev</button>
-      <button class="wf-btn" data-f="design">Design</button>
-      <button class="wf-btn" data-f="mobile">Mobile</button>
-    </div>
-
-    <!-- Projects grid -->
-    <div class="works-grid" id="works-grid">
-
-      <article class="work-item wi-large fade-up d1" data-cat="web">
-        <div class="wi-inner">
-          <div class="wi-bg" style="background:linear-gradient(135deg,#0a0f1e 0%,#0f2040 50%,#1a3a6b 100%);">
-            <div class="wi-code-preview">
-              <div class="wcp-bar"><span></span><span></span><span></span></div>
-              <div class="wcp-line"><span style="color:#7dd3fc">class</span> <span style="color:#fbbf24">Api</span> <span style="color:#e2e8f0">extends</span> <span style="color:#fbbf24">Controller</span></div>
-              <div class="wcp-line"><span style="color:#94a3b8">{</span></div>
-              <div class="wcp-line ml"><span style="color:#7dd3fc">public function</span> <span style="color:#4ade80">index</span><span style="color:#94a3b8">()</span></div>
-              <div class="wcp-line ml"><span style="color:#94a3b8">{</span></div>
-              <div class="wcp-line ml2"><span style="color:#7dd3fc">return</span> <span style="color:#fbbf24">Resource</span><span style="color:#94a3b8">::</span><span style="color:#4ade80">collection</span><span style="color:#94a3b8">(</span></div>
-              <div class="wcp-line ml3"><span style="color:#fbbf24">Post</span><span style="color:#94a3b8">::</span><span style="color:#4ade80">paginate</span><span style="color:#94a3b8">(</span><span style="color:#fb923c">15</span><span style="color:#94a3b8">));</span></div>
-              <div class="wcp-line ml"><span style="color:#94a3b8">}</span></div>
-              <div class="wcp-line"><span style="color:#94a3b8">}</span></div>
-            </div>
-          </div>
-          <div class="wi-overlay">
-            <a href="https://github.com/MdRasen/laravel-api" target="_blank" rel="noopener noreferrer" class="wi-link">View Project ↗</a>
-          </div>
-          <div class="wi-info">
-            <div class="wi-cat">Backend · REST API</div>
-            <h3 class="wi-title">Laravel 12 REST API</h3>
-            <p class="wi-desc">Production-ready API covering auth, resources, middleware, pagination, versioning & testing.</p>
-            <div class="wi-meta">
-              <span class="wi-lang"><span class="ldot php"></span>PHP</span>
-              <a href="https://github.com/MdRasen/laravel-api" target="_blank" rel="noopener noreferrer" class="wi-gh">
-                GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </a>
-            </div>
-          </div>
+    <!-- Scroll indicator -->
+    <div class="scroll-hint fade-up d6">
+      <a href="#about" aria-label="Scroll down to About section" class="scroll-hint-link">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
         </div>
-      </article>
-
-      <article class="work-item fade-up d2" data-cat="web">
-        <div class="wi-inner">
-          <div class="wi-bg" style="background:linear-gradient(135deg,#1a0a00 0%,#3d1a00 50%,#7c3400 100%);">
-            <div class="wi-emoji-preview">🍽️</div>
-            <div class="wi-tech-pills"><span>React</span><span>CSS3</span><span>Vite</span></div>
-          </div>
-          <div class="wi-overlay">
-            <a href="https://github.com/MdRasen/TandooriNGrill" target="_blank" rel="noopener noreferrer" class="wi-link">View Project ↗</a>
-          </div>
-          <div class="wi-info">
-            <div class="wi-cat">Web App</div>
-            <h3 class="wi-title">TandooriNGrill</h3>
-            <p class="wi-desc">Responsive restaurant menu app with dynamic filtering and mobile-first UI.</p>
-            <div class="wi-meta">
-              <span class="wi-lang"><span class="ldot js"></span>JavaScript</span>
-              <a href="https://github.com/MdRasen/TandooriNGrill" target="_blank" rel="noopener noreferrer" class="wi-gh">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-            </div>
-          </div>
+        <span class="scroll-text">SCROLL</span>
+        <div class="scroll-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </div>
-      </article>
-
-      <article class="work-item fade-up d3" data-cat="design">
-        <div class="wi-inner">
-          <div class="wi-bg" style="background:linear-gradient(135deg,#0a001a 0%,#1a0040 50%,#2d006b 100%);">
-            <div class="wi-emoji-preview">🎓</div>
-            <div class="wi-tech-pills"><span>React</span><span>Animation</span></div>
-          </div>
-          <div class="wi-overlay">
-            <a href="https://github.com/MdRasen/edusity" target="_blank" rel="noopener noreferrer" class="wi-link">View Project ↗</a>
-          </div>
-          <div class="wi-info">
-            <div class="wi-cat">Web Design</div>
-            <h3 class="wi-title">Edusity</h3>
-            <p class="wi-desc">University website with modern UI, program showcases and interactive admissions flow.</p>
-            <div class="wi-meta">
-              <span class="wi-lang"><span class="ldot js"></span>JavaScript</span>
-              <a href="https://github.com/MdRasen/edusity" target="_blank" rel="noopener noreferrer" class="wi-gh">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="work-item fade-up d2" data-cat="design">
-        <div class="wi-inner">
-          <div class="wi-bg" style="background:linear-gradient(135deg,#001a10 0%,#004030 50%,#006b4a 100%);">
-            <div class="wi-emoji-preview">🤖</div>
-            <div class="wi-tech-pills"><span>React</span><span>Tailwind</span><span>Framer</span></div>
-          </div>
-          <div class="wi-overlay">
-            <a href="https://github.com/MdRasen/agency-ai" target="_blank" rel="noopener noreferrer" class="wi-link">View Project ↗</a>
-          </div>
-          <div class="wi-info">
-            <div class="wi-cat">Web Design</div>
-            <h3 class="wi-title">Agency AI</h3>
-            <p class="wi-desc">Modern AI agency website with smooth Framer Motion animations and clean UI.</p>
-            <div class="wi-meta">
-              <span class="wi-lang"><span class="ldot js"></span>JavaScript</span>
-              <a href="https://github.com/MdRasen/agency-ai" target="_blank" rel="noopener noreferrer" class="wi-gh">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="work-item wi-large fade-up d3" data-cat="design">
-        <div class="wi-inner">
-          <div class="wi-bg" style="background:linear-gradient(135deg,#1a0a0a 0%,#3d0f10 50%,#6b1f20 100%);">
-            <div class="wi-3d-preview">
-              <div class="cube">
-                <div class="face front">3D</div>
-                <div class="face back">JS</div>
-                <div class="face right">⚡</div>
-                <div class="face left">✨</div>
-                <div class="face top">🌐</div>
-                <div class="face bottom">∞</div>
-              </div>
-            </div>
-          </div>
-          <div class="wi-overlay">
-            <a href="https://github.com/MdRasen/3D_Portfolio" target="_blank" rel="noopener noreferrer" class="wi-link">View Project ↗</a>
-          </div>
-          <div class="wi-info">
-            <div class="wi-cat">3D · Web Design</div>
-            <h3 class="wi-title">3D Portfolio</h3>
-            <p class="wi-desc">Interactive 3D portfolio with Three.js and WebGL — physics-based animations and immersive graphics.</p>
-            <div class="wi-meta">
-              <span class="wi-lang"><span class="ldot js"></span>Three.js</span>
-              <a href="https://github.com/MdRasen/3D_Portfolio" target="_blank" rel="noopener noreferrer" class="wi-gh">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="work-item fade-up d4" data-cat="mobile">
-        <div class="wi-inner">
-          <div class="wi-bg" style="background:linear-gradient(135deg,#001a1a 0%,#003540 50%,#005560 100%);">
-            <div class="wi-emoji-preview">📱</div>
-            <div class="wi-tech-pills"><span>React Native</span><span>JS</span></div>
-          </div>
-          <div class="wi-overlay">
-            <a href="https://github.com/MdRasen/react_native-recurrly" target="_blank" rel="noopener noreferrer" class="wi-link">View Project ↗</a>
-          </div>
-          <div class="wi-info">
-            <div class="wi-cat">Mobile App</div>
-            <h3 class="wi-title">React Native App</h3>
-            <p class="wi-desc">Cross-platform mobile application with recurring subscription management.</p>
-            <div class="wi-meta">
-              <span class="wi-lang"><span class="ldot js"></span>React Native</span>
-              <a href="https://github.com/MdRasen/react_native-recurrly" target="_blank" rel="noopener noreferrer" class="wi-gh">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-    </div><!-- /works-grid -->
-
-    <div class="works-cta fade-up">
-      <a href="https://github.com/MdRasen" target="_blank" rel="noopener noreferrer" class="btn-ghost btn-lg">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="18"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        See All on GitHub
       </a>
     </div>
+  </section>
+
+  <!-- Marquee strip -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>Web Development</span><span class="mx-dot">✦</span>
+      <span>UI/UX Design</span><span class="mx-dot">✦</span>
+      <span>Laravel</span><span class="mx-dot">✦</span>
+      <span>React.js</span><span class="mx-dot">✦</span>
+      <span>SEO Optimization</span><span class="mx-dot">✦</span>
+      <span>Full-Stack</span><span class="mx-dot">✦</span>
+      <span>Available For Hire</span><span class="mx-dot">✦</span>
+      <span>Web Development</span><span class="mx-dot">✦</span>
+      <span>UI/UX Design</span><span class="mx-dot">✦</span>
+      <span>Laravel</span><span class="mx-dot">✦</span>
+      <span>React.js</span><span class="mx-dot">✦</span>
+      <span>SEO Optimization</span><span class="mx-dot">✦</span>
+      <span>Full-Stack</span><span class="mx-dot">✦</span>
+      <span>Available For Hire</span><span class="mx-dot">✦</span>
+    </div>
   </div>
-</section>
 
-<!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
-<section id="contact" class="section">
-  <div class="container">
-    <div class="contact-grid">
+  <!-- ═══════════════════════════════ ABOUT ═════════════════════════════════ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
 
-      <!-- Left side -->
-      <div class="contact-left">
-        <div class="section-tag fade-left">CONTACT</div>
-        <h2 class="section-title fade-left d1">Let's Build<br><span class="title-accent">Together.</span></h2>
-        <p class="contact-bio fade-left d2">
-          Have a project in mind? Looking for a developer to join your team?
-          I'd love to hear about it. Let's create something great.
-        </p>
+        <!-- Image column -->
+        <div class="about-img-col">
+          <div class="about-img-frame fade-left">
+            <img src="assets/me.png" alt="Md Al Amin Hossen" class="about-img">
+            <div class="about-img-overlay">
+              <div class="about-img-tag">
+                <span class="avail-pulse sm"></span>Open to Work
+              </div>
+            </div>
+            <!-- Decorative corner accents -->
+            <div class="corner-tl"></div>
+            <div class="corner-br"></div>
+          </div>
 
-        <div class="contact-items fade-left d3">
-          <a href="mailto:info@devrasen.com" class="ci">
-            <div class="ci-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
+          <!-- Info cards below image -->
+          <div class="info-cards fade-left d2">
+            <div class="info-card">
+              <span class="info-icon">📍</span>
+              <div>
+                <div class="info-label">Location</div>
+                <div class="info-value">Dhaka, Bangladesh</div>
+              </div>
             </div>
-            <div class="ci-body">
-              <div class="ci-lbl">Email</div>
-              <div class="ci-val">info@devrasen.com</div>
-            </div>
-          </a>
-          <a href="tel:+8801234567890" class="ci">
-            <div class="ci-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.14a16 16 0 006 6l1.51-1.51a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.9v2.02z"/></svg>
-            </div>
-            <div class="ci-body">
-              <div class="ci-lbl">Phone</div>
-              <div class="ci-val">+880 123-456-7890</div>
-            </div>
-          </a>
-          <div class="ci">
-            <div class="ci-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div class="ci-body">
-              <div class="ci-lbl">Location</div>
-              <div class="ci-val">Dhaka, Bangladesh</div>
+            <div class="info-card">
+              <span class="info-icon">🎓</span>
+              <div>
+                <div class="info-label">Education</div>
+                <div class="info-value">BSc CSE, AIUB</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Social links -->
-        <div class="contact-socials fade-left d4">
-          <a href="https://www.linkedin.com/in/mdrasen/" target="_blank" rel="noopener noreferrer" class="cs-btn" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
+        <!-- Content column -->
+        <div class="about-content">
+          <div class="section-tag fade-up">ABOUT ME</div>
+          <h2 class="section-title fade-up d1">
+            Crafting Digital<br><span class="title-accent">Experiences</span>
+          </h2>
+          <p class="about-bio fade-up d2">
+            I'm a Dhaka-based full-stack developer with 7+ years of experience building
+            dynamic, visually engaging web applications. I specialize in bridging the gap
+            between clean code and beautiful design — creating products that both work
+            flawlessly and look stunning.
+          </p>
+          <p class="about-bio fade-up d3">
+            My stack spans from <strong>Laravel APIs</strong> to <strong>React frontends</strong>,
+            with a strong eye for <strong>UI/UX</strong>. Whether it's a startup MVP or an enterprise
+            platform, I bring the same level of craft and attention to detail.
+          </p>
+
+          <!-- Skills -->
+          <div class="skills-wrap fade-up d3">
+            <div class="skills-label">Core Expertise</div>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-header"><span>PHP / Laravel</span><span>92%</span></div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-w="92"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header"><span>JavaScript / React</span><span>87%</span></div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-w="87"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header"><span>HTML / CSS / Tailwind</span><span>96%</span></div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-w="96"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header"><span>UI/UX Design (Figma)</span><span>80%</span></div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-w="80"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header"><span>WordPress</span><span>93%</span></div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-w="93"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tech stack pills -->
+          <div class="tech-stack fade-up d4">
+            <div class="ts-label">Tech Stack</div>
+            <div class="ts-pills">
+              <span class="ts-pill">PHP</span><span class="ts-pill">Laravel</span>
+              <span class="ts-pill">React.js</span><span class="ts-pill">JavaScript</span>
+              <span class="ts-pill">HTML5</span><span class="ts-pill">CSS3</span>
+              <span class="ts-pill">Tailwind</span><span class="ts-pill">MySQL</span>
+              <span class="ts-pill">REST API</span><span class="ts-pill">WordPress</span>
+              <span class="ts-pill">Git</span><span class="ts-pill">Figma</span>
+              <span class="ts-pill">Three.js</span><span class="ts-pill">React Native</span>
+            </div>
+          </div>
+
+          <!-- Timeline tabs -->
+          <div class="timeline-tabs fade-up d4">
+            <div class="tt-buttons">
+              <button class="tt-btn active" data-tab="exp">Experience</button>
+              <button class="tt-btn" data-tab="edu">Education</button>
+            </div>
+            <div class="tt-content" id="tab-exp">
+              <div class="tl-item">
+                <div class="tl-year">2017 — Present</div>
+                <div class="tl-body">
+                  <div class="tl-title">WordPress Developer</div>
+                  <div class="tl-org">Freelance</div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-year">2022 — 2023</div>
+                <div class="tl-body">
+                  <div class="tl-title">Web Developer</div>
+                  <div class="tl-org">Web For Solutions Ltd</div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-year">2021 — 2022</div>
+                <div class="tl-body">
+                  <div class="tl-title">Co-Founder</div>
+                  <div class="tl-org">The Authentic Store</div>
+                </div>
+              </div>
+            </div>
+            <div class="tt-content hidden" id="tab-edu">
+              <div class="tl-item">
+                <div class="tl-year">2019 — 2023</div>
+                <div class="tl-body">
+                  <div class="tl-title">BSc in Computer Science & Engineering</div>
+                  <div class="tl-org">American International University Bangladesh</div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-year">2016 — 2018</div>
+                <div class="tl-body">
+                  <div class="tl-title">Higher Secondary Certificate (HSC)</div>
+                  <div class="tl-org">Dhaka Imperial College (DIC)</div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-year">2014 — 2016</div>
+                <div class="tl-body">
+                  <div class="tl-title">Secondary School Certificate (SSC)</div>
+                  <div class="tl-org">Faizur Rahman Ideal Institute</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ SERVICES ══════════════════════════════ -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag fade-up">WHAT I DO</div>
+        <h2 class="section-title fade-up d1">My <span class="title-accent">Services</span></h2>
+        <p class="section-sub fade-up d2">End-to-end solutions from design to deployment</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="svc-card fade-up d1">
+          <div class="svc-num">01</div>
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg>
+          </div>
+          <h3>Web Development</h3>
+          <p>Custom web applications built for scale. From RESTful APIs to full-stack platforms — clean, performant,
+            production-ready code.</p>
+          <div class="svc-tags"><span>Laravel</span><span>React</span><span>MySQL</span></div>
+          <div class="svc-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="svc-card fade-up d2">
+          <div class="svc-num">02</div>
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+          </div>
+          <h3>UI/UX Design</h3>
+          <p>Interfaces that feel intuitive and look stunning. Wireframes, prototypes, and pixel-perfect designs that
+            convert visitors into users.</p>
+          <div class="svc-tags"><span>Figma</span><span>Prototyping</span><span>Design Systems</span></div>
+          <div class="svc-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="svc-card fade-up d3">
+          <div class="svc-num">03</div>
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="5" y="2" width="14" height="20" rx="2" />
+              <path d="M12 18h.01" />
+            </svg>
+          </div>
+          <h3>Web Designing</h3>
+          <p>Visually stunning, fully responsive websites that work flawlessly on every device — delivering experiences
+            that make brands memorable.</p>
+          <div class="svc-tags"><span>Responsive</span><span>CSS</span><span>Tailwind</span></div>
+          <div class="svc-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="svc-card fade-up d4">
+          <div class="svc-num">04</div>
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" />
+            </svg>
+          </div>
+          <h3>SEO Optimization</h3>
+          <p>Technical SEO strategies that get you ranked. From site structure audits to on-page optimization — driving
+            real organic traffic growth.</p>
+          <div class="svc-tags"><span>Technical SEO</span><span>Analytics</span><span>Performance</span></div>
+          <div class="svc-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ WORKS ═════════════════════════════════ -->
+  <section id="works" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag fade-up">PORTFOLIO</div>
+        <h2 class="section-title fade-up d1">Featured <span class="title-accent">Projects</span></h2>
+      </div>
+
+      <!-- Filter buttons -->
+      <div class="works-filters fade-up d2">
+        <button class="wf-btn active" data-f="all">All Projects</button>
+        <button class="wf-btn" data-f="web">Web Dev</button>
+        <button class="wf-btn" data-f="design">Design</button>
+        <button class="wf-btn" data-f="mobile">Mobile</button>
+      </div>
+
+      <!-- Projects grid -->
+      <div class="works-grid" id="works-grid">
+
+        <article class="work-item wi-large fade-up d1" data-cat="web">
+          <div class="wi-inner">
+            <div class="wi-bg" style="background:linear-gradient(135deg,#0a0f1e 0%,#0f2040 50%,#1a3a6b 100%);">
+              <div class="wi-code-preview">
+                <div class="wcp-bar"><span></span><span></span><span></span></div>
+                <div class="wcp-line"><span style="color:#7dd3fc">class</span> <span style="color:#fbbf24">Api</span>
+                  <span style="color:#e2e8f0">extends</span> <span style="color:#fbbf24">Controller</span></div>
+                <div class="wcp-line"><span style="color:#94a3b8">{</span></div>
+                <div class="wcp-line ml"><span style="color:#7dd3fc">public function</span> <span
+                    style="color:#4ade80">index</span><span style="color:#94a3b8">()</span></div>
+                <div class="wcp-line ml"><span style="color:#94a3b8">{</span></div>
+                <div class="wcp-line ml2"><span style="color:#7dd3fc">return</span> <span
+                    style="color:#fbbf24">Resource</span><span style="color:#94a3b8">::</span><span
+                    style="color:#4ade80">collection</span><span style="color:#94a3b8">(</span></div>
+                <div class="wcp-line ml3"><span style="color:#fbbf24">Post</span><span
+                    style="color:#94a3b8">::</span><span style="color:#4ade80">paginate</span><span
+                    style="color:#94a3b8">(</span><span style="color:#fb923c">15</span><span
+                    style="color:#94a3b8">));</span></div>
+                <div class="wcp-line ml"><span style="color:#94a3b8">}</span></div>
+                <div class="wcp-line"><span style="color:#94a3b8">}</span></div>
+              </div>
+            </div>
+            <div class="wi-overlay">
+              <a href="https://github.com/MdRasen/laravel-api" target="_blank" rel="noopener noreferrer"
+                class="wi-link">View Project ↗</a>
+            </div>
+            <div class="wi-info">
+              <div class="wi-cat">Backend · REST API</div>
+              <h3 class="wi-title">Laravel 12 REST API</h3>
+              <p class="wi-desc">Production-ready API covering auth, resources, middleware, pagination, versioning &
+                testing.</p>
+              <div class="wi-meta">
+                <span class="wi-lang"><span class="ldot php"></span>PHP</span>
+                <a href="https://github.com/MdRasen/laravel-api" target="_blank" rel="noopener noreferrer"
+                  class="wi-gh">
+                  GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-item fade-up d2" data-cat="web">
+          <div class="wi-inner">
+            <div class="wi-bg" style="background:linear-gradient(135deg,#1a0a00 0%,#3d1a00 50%,#7c3400 100%);">
+              <div class="wi-emoji-preview">🍽️</div>
+              <div class="wi-tech-pills"><span>React</span><span>CSS3</span><span>Vite</span></div>
+            </div>
+            <div class="wi-overlay">
+              <a href="https://github.com/MdRasen/TandooriNGrill" target="_blank" rel="noopener noreferrer"
+                class="wi-link">View Project ↗</a>
+            </div>
+            <div class="wi-info">
+              <div class="wi-cat">Web App</div>
+              <h3 class="wi-title">TandooriNGrill</h3>
+              <p class="wi-desc">Responsive restaurant menu app with dynamic filtering and mobile-first UI.</p>
+              <div class="wi-meta">
+                <span class="wi-lang"><span class="ldot js"></span>JavaScript</span>
+                <a href="https://github.com/MdRasen/TandooriNGrill" target="_blank" rel="noopener noreferrer"
+                  class="wi-gh">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    width="12">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-item fade-up d3" data-cat="design">
+          <div class="wi-inner">
+            <div class="wi-bg" style="background:linear-gradient(135deg,#0a001a 0%,#1a0040 50%,#2d006b 100%);">
+              <div class="wi-emoji-preview">🎓</div>
+              <div class="wi-tech-pills"><span>React</span><span>Animation</span></div>
+            </div>
+            <div class="wi-overlay">
+              <a href="https://github.com/MdRasen/edusity" target="_blank" rel="noopener noreferrer"
+                class="wi-link">View Project ↗</a>
+            </div>
+            <div class="wi-info">
+              <div class="wi-cat">Web Design</div>
+              <h3 class="wi-title">Edusity</h3>
+              <p class="wi-desc">University website with modern UI, program showcases and interactive admissions flow.
+              </p>
+              <div class="wi-meta">
+                <span class="wi-lang"><span class="ldot js"></span>JavaScript</span>
+                <a href="https://github.com/MdRasen/edusity" target="_blank" rel="noopener noreferrer"
+                  class="wi-gh">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    width="12">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-item fade-up d2" data-cat="design">
+          <div class="wi-inner">
+            <div class="wi-bg" style="background:linear-gradient(135deg,#001a10 0%,#004030 50%,#006b4a 100%);">
+              <div class="wi-emoji-preview">🤖</div>
+              <div class="wi-tech-pills"><span>React</span><span>Tailwind</span><span>Framer</span></div>
+            </div>
+            <div class="wi-overlay">
+              <a href="https://github.com/MdRasen/agency-ai" target="_blank" rel="noopener noreferrer"
+                class="wi-link">View Project ↗</a>
+            </div>
+            <div class="wi-info">
+              <div class="wi-cat">Web Design</div>
+              <h3 class="wi-title">Agency AI</h3>
+              <p class="wi-desc">Modern AI agency website with smooth Framer Motion animations and clean UI.</p>
+              <div class="wi-meta">
+                <span class="wi-lang"><span class="ldot js"></span>JavaScript</span>
+                <a href="https://github.com/MdRasen/agency-ai" target="_blank" rel="noopener noreferrer"
+                  class="wi-gh">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    width="12">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-item wi-large fade-up d3" data-cat="design">
+          <div class="wi-inner">
+            <div class="wi-bg" style="background:linear-gradient(135deg,#1a0a0a 0%,#3d0f10 50%,#6b1f20 100%);">
+              <div class="wi-3d-preview">
+                <div class="cube">
+                  <div class="face front">3D</div>
+                  <div class="face back">JS</div>
+                  <div class="face right">⚡</div>
+                  <div class="face left">✨</div>
+                  <div class="face top">🌐</div>
+                  <div class="face bottom">∞</div>
+                </div>
+              </div>
+            </div>
+            <div class="wi-overlay">
+              <a href="https://github.com/MdRasen/3D_Portfolio" target="_blank" rel="noopener noreferrer"
+                class="wi-link">View Project ↗</a>
+            </div>
+            <div class="wi-info">
+              <div class="wi-cat">3D · Web Design</div>
+              <h3 class="wi-title">3D Portfolio</h3>
+              <p class="wi-desc">Interactive 3D portfolio with Three.js and WebGL — physics-based animations and
+                immersive graphics.</p>
+              <div class="wi-meta">
+                <span class="wi-lang"><span class="ldot js"></span>Three.js</span>
+                <a href="https://github.com/MdRasen/3D_Portfolio" target="_blank" rel="noopener noreferrer"
+                  class="wi-gh">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    width="12">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-item fade-up d4" data-cat="mobile">
+          <div class="wi-inner">
+            <div class="wi-bg" style="background:linear-gradient(135deg,#001a1a 0%,#003540 50%,#005560 100%);">
+              <div class="wi-emoji-preview">📱</div>
+              <div class="wi-tech-pills"><span>React Native</span><span>JS</span></div>
+            </div>
+            <div class="wi-overlay">
+              <a href="https://github.com/MdRasen/react_native-recurrly" target="_blank" rel="noopener noreferrer"
+                class="wi-link">View Project ↗</a>
+            </div>
+            <div class="wi-info">
+              <div class="wi-cat">Mobile App</div>
+              <h3 class="wi-title">React Native App</h3>
+              <p class="wi-desc">Cross-platform mobile application with recurring subscription management.</p>
+              <div class="wi-meta">
+                <span class="wi-lang"><span class="ldot js"></span>React Native</span>
+                <a href="https://github.com/MdRasen/react_native-recurrly" target="_blank" rel="noopener noreferrer"
+                  class="wi-gh">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    width="12">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /works-grid -->
+
+      <div class="works-cta fade-up">
+        <a href="https://github.com/MdRasen" target="_blank" rel="noopener noreferrer" class="btn-ghost btn-lg">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18">
+            <path
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          See All on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left side -->
+        <div class="contact-left">
+          <div class="section-tag fade-left">CONTACT</div>
+          <h2 class="section-title fade-left d1">Let's Build<br><span class="title-accent">Together.</span></h2>
+          <p class="contact-bio fade-left d2">
+            Have a project in mind? Looking for a developer to join your team?
+            I'd love to hear about it. Let's create something great.
+          </p>
+
+          <div class="contact-items fade-left d3">
+            <a href="mailto:info@devrasen.com" class="ci">
+              <div class="ci-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M2 8l10 6 10-6" />
+                </svg>
+              </div>
+              <div class="ci-body">
+                <div class="ci-lbl">Email</div>
+                <div class="ci-val">info@devrasen.com</div>
+              </div>
+            </a>
+            <a href="tel:+8801234567890" class="ci">
+              <div class="ci-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.14a16 16 0 006 6l1.51-1.51a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.9v2.02z" />
+                </svg>
+              </div>
+              <div class="ci-body">
+                <div class="ci-lbl">Phone</div>
+                <div class="ci-val">+880 123-456-7890</div>
+              </div>
+            </a>
+            <div class="ci">
+              <div class="ci-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="ci-body">
+                <div class="ci-lbl">Location</div>
+                <div class="ci-val">Dhaka, Bangladesh</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social links -->
+          <div class="contact-socials fade-left d4">
+            <a href="https://www.linkedin.com/in/mdrasen/" target="_blank" rel="noopener noreferrer" class="cs-btn"
+              aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/MdRasen" target="_blank" rel="noopener noreferrer" class="cs-btn"
+              aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              GitHub
+            </a>
+            <a href="https://www.behance.net/devRasen" target="_blank" rel="noopener noreferrer" class="cs-btn"
+              aria-label="Behance">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M7.443 5.35c.639 0 1.23.05 1.77.198.51.099.95.298 1.32.547.36.249.64.597.83.945.19.398.28.846.28 1.344 0 .547-.14 1.045-.42 1.493-.28.398-.7.746-1.24.995.75.199 1.32.597 1.69 1.145.37.547.56 1.194.56 1.941 0 .597-.1 1.094-.32 1.542-.23.448-.54.846-.94 1.144-.4.298-.87.497-1.42.646-.54.1-1.1.149-1.67.149H0V5.35h7.443zm-.37 4.477c.49 0 .9-.1 1.21-.348.31-.249.47-.598.47-1.095 0-.298-.06-.547-.17-.746-.1-.199-.25-.348-.43-.448-.18-.099-.37-.199-.59-.248-.23-.05-.46-.05-.7-.05H3.13v2.935h3.943zm.21 4.726c.27 0 .52-.05.77-.1.25-.05.46-.149.65-.298.19-.149.34-.298.45-.547.12-.249.17-.547.17-.896 0-.697-.19-1.194-.57-1.492-.37-.299-.87-.448-1.48-.448H3.13v3.781h4.153zM20.935 16.7c-.39.448-.85.746-1.39.995-.54.249-1.12.348-1.74.348-.67 0-1.27-.099-1.82-.348-.54-.249-1-.547-1.38-.995-.38-.398-.68-.896-.89-1.443-.21-.547-.32-1.144-.32-1.791 0-.647.11-1.244.32-1.791.21-.547.51-1.045.89-1.443.38-.398.84-.696 1.38-.945.54-.249 1.15-.348 1.82-.348.66 0 1.24.099 1.74.348.5.249.92.547 1.25.945.33.398.57.896.73 1.443.16.547.22 1.144.22 1.79v.597h-6.21c.06.697.31 1.244.74 1.592.43.348.95.547 1.56.547.52 0 .95-.099 1.29-.348.34-.249.63-.547.85-.945l1.75.747zM17.6 11.874c-.06-.597-.28-1.094-.65-1.443-.37-.348-.87-.497-1.46-.497-.36 0-.67.05-.94.149-.28.099-.51.249-.7.448-.19.199-.34.398-.43.646-.1.249-.16.498-.19.747H17.6zm-2.1-5.175h4.89v1.194h-4.89V6.7z" />
+              </svg>
+              Behance
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form-wrap fade-up d2">
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="cf-header">
+              <h3>Send a Message</h3>
+              <div class="cf-star">✦</div>
+            </div>
+            <div class="cf-row">
+              <div class="cf-group">
+                <input type="text" id="cf-name" placeholder=" " required autocomplete="name">
+                <label for="cf-name">Your Name</label>
+                <div class="cf-line"></div>
+              </div>
+              <div class="cf-group">
+                <input type="email" id="cf-email" placeholder=" " required autocomplete="email">
+                <label for="cf-email">Email Address</label>
+                <div class="cf-line"></div>
+              </div>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="cf-subject" placeholder=" " required>
+              <label for="cf-subject">Subject</label>
+              <div class="cf-line"></div>
+            </div>
+            <div class="cf-group">
+              <textarea id="cf-msg" placeholder=" " rows="5" required></textarea>
+              <label for="cf-msg">Your Message</label>
+              <div class="cf-line"></div>
+            </div>
+            <button type="submit" class="cf-submit" id="cf-submit">
+              <span class="cf-btn-text">Send Message</span>
+              <span class="cf-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+              </span>
+            </button>
+            <div class="cf-success" id="cf-success">
+              <span>✓</span> Message sent! I'll get back to you within 24 hours.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ FOOTER ════════════════════════════════ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="logo">
+            <span class="logo-dev">dev</span><span class="logo-rasen">Rasen</span>
           </a>
-          <a href="https://github.com/MdRasen" target="_blank" rel="noopener noreferrer" class="cs-btn" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-            GitHub
+          <p>Full-Stack Developer · Dhaka, Bangladesh</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#works">Works</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/mdrasen/" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
           </a>
-          <a href="https://www.behance.net/devRasen" target="_blank" rel="noopener noreferrer" class="cs-btn" aria-label="Behance">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.443 5.35c.639 0 1.23.05 1.77.198.51.099.95.298 1.32.547.36.249.64.597.83.945.19.398.28.846.28 1.344 0 .547-.14 1.045-.42 1.493-.28.398-.7.746-1.24.995.75.199 1.32.597 1.69 1.145.37.547.56 1.194.56 1.941 0 .597-.1 1.094-.32 1.542-.23.448-.54.846-.94 1.144-.4.298-.87.497-1.42.646-.54.1-1.1.149-1.67.149H0V5.35h7.443zm-.37 4.477c.49 0 .9-.1 1.21-.348.31-.249.47-.598.47-1.095 0-.298-.06-.547-.17-.746-.1-.199-.25-.348-.43-.448-.18-.099-.37-.199-.59-.248-.23-.05-.46-.05-.7-.05H3.13v2.935h3.943zm.21 4.726c.27 0 .52-.05.77-.1.25-.05.46-.149.65-.298.19-.149.34-.298.45-.547.12-.249.17-.547.17-.896 0-.697-.19-1.194-.57-1.492-.37-.299-.87-.448-1.48-.448H3.13v3.781h4.153zM20.935 16.7c-.39.448-.85.746-1.39.995-.54.249-1.12.348-1.74.348-.67 0-1.27-.099-1.82-.348-.54-.249-1-.547-1.38-.995-.38-.398-.68-.896-.89-1.443-.21-.547-.32-1.144-.32-1.791 0-.647.11-1.244.32-1.791.21-.547.51-1.045.89-1.443.38-.398.84-.696 1.38-.945.54-.249 1.15-.348 1.82-.348.66 0 1.24.099 1.74.348.5.249.92.547 1.25.945.33.398.57.896.73 1.443.16.547.22 1.144.22 1.79v.597h-6.21c.06.697.31 1.244.74 1.592.43.348.95.547 1.56.547.52 0 .95-.099 1.29-.348.34-.249.63-.547.85-.945l1.75.747zM17.6 11.874c-.06-.597-.28-1.094-.65-1.443-.37-.348-.87-.497-1.46-.497-.36 0-.67.05-.94.149-.28.099-.51.249-.7.448-.19.199-.34.398-.43.646-.1.249-.16.498-.19.747H17.6zm-2.1-5.175h4.89v1.194h-4.89V6.7z"/></svg>
-            Behance
+          <a href="https://github.com/MdRasen" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+          </a>
+          <a href="https://www.behance.net/devRasen" target="_blank" rel="noopener noreferrer" aria-label="Behance">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M7.443 5.35c.639 0 1.23.05 1.77.198.51.099.95.298 1.32.547.36.249.64.597.83.945.19.398.28.846.28 1.344 0 .547-.14 1.045-.42 1.493-.28.398-.7.746-1.24.995.75.199 1.32.597 1.69 1.145.37.547.56 1.194.56 1.941 0 .597-.1 1.094-.32 1.542-.23.448-.54.846-.94 1.144-.4.298-.87.497-1.42.646-.54.1-1.1.149-1.67.149H0V5.35h7.443zm-.37 4.477c.49 0 .9-.1 1.21-.348.31-.249.47-.598.47-1.095 0-.298-.06-.547-.17-.746-.1-.199-.25-.348-.43-.448-.18-.099-.37-.199-.59-.248-.23-.05-.46-.05-.7-.05H3.13v2.935h3.943zm.21 4.726c.27 0 .52-.05.77-.1.25-.05.46-.149.65-.298.19-.149.34-.298.45-.547.12-.249.17-.547.17-.896 0-.697-.19-1.194-.57-1.492-.37-.299-.87-.448-1.48-.448H3.13v3.781h4.153zM20.935 16.7c-.39.448-.85.746-1.39.995-.54.249-1.12.348-1.74.348-.67 0-1.27-.099-1.82-.348-.54-.249-1-.547-1.38-.995-.38-.398-.68-.896-.89-1.443-.21-.547-.32-1.144-.32-1.791 0-.647.11-1.244.32-1.791.21-.547.51-1.045.89-1.443.38-.398.84-.696 1.38-.945.54-.249 1.15-.348 1.82-.348.66 0 1.24.099 1.74.348.5.249.92.547 1.25.945.33.398.57.896.73 1.443.16.547.22 1.144.22 1.79v.597h-6.21c.06.697.31 1.244.74 1.592.43.348.95.547 1.56.547.52 0 .95-.099 1.29-.348.34-.249.63-.547.85-.945l1.75.747zM17.6 11.874c-.06-.597-.28-1.094-.65-1.443-.37-.348-.87-.497-1.46-.497-.36 0-.67.05-.94.149-.28.099-.51.249-.7.448-.19.199-.34.398-.43.646-.1.249-.16.498-.19.747H17.6zm-2.1-5.175h4.89v1.194h-4.89V6.7z" />
+            </svg>
           </a>
         </div>
       </div>
-
-      <!-- Right: Form -->
-      <div class="contact-form-wrap fade-up d2">
-        <form id="contact-form" class="contact-form" novalidate>
-          <div class="cf-header">
-            <h3>Send a Message</h3>
-            <div class="cf-star">✦</div>
-          </div>
-          <div class="cf-row">
-            <div class="cf-group">
-              <input type="text" id="cf-name" placeholder=" " required autocomplete="name">
-              <label for="cf-name">Your Name</label>
-              <div class="cf-line"></div>
-            </div>
-            <div class="cf-group">
-              <input type="email" id="cf-email" placeholder=" " required autocomplete="email">
-              <label for="cf-email">Email Address</label>
-              <div class="cf-line"></div>
-            </div>
-          </div>
-          <div class="cf-group">
-            <input type="text" id="cf-subject" placeholder=" " required>
-            <label for="cf-subject">Subject</label>
-            <div class="cf-line"></div>
-          </div>
-          <div class="cf-group">
-            <textarea id="cf-msg" placeholder=" " rows="5" required></textarea>
-            <label for="cf-msg">Your Message</label>
-            <div class="cf-line"></div>
-          </div>
-          <button type="submit" class="cf-submit" id="cf-submit">
-            <span class="cf-btn-text">Send Message</span>
-            <span class="cf-btn-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </span>
-          </button>
-          <div class="cf-success" id="cf-success">
-            <span>✓</span> Message sent! I'll get back to you within 24 hours.
-          </div>
-        </form>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════ FOOTER ════════════════════════════════ -->
-<footer id="footer">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#hero" class="logo">
-          <span class="logo-dev">dev</span><span class="logo-rasen">Rasen</span>
-        </a>
-        <p>Full-Stack Developer · Dhaka, Bangladesh</p>
-      </div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#works">Works</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="footer-socials">
-        <a href="https://www.linkedin.com/in/mdrasen/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="https://github.com/MdRasen" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        </a>
-        <a href="https://www.behance.net/devRasen" target="_blank" rel="noopener noreferrer" aria-label="Behance">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.443 5.35c.639 0 1.23.05 1.77.198.51.099.95.298 1.32.547.36.249.64.597.83.945.19.398.28.846.28 1.344 0 .547-.14 1.045-.42 1.493-.28.398-.7.746-1.24.995.75.199 1.32.597 1.69 1.145.37.547.56 1.194.56 1.941 0 .597-.1 1.094-.32 1.542-.23.448-.54.846-.94 1.144-.4.298-.87.497-1.42.646-.54.1-1.1.149-1.67.149H0V5.35h7.443zm-.37 4.477c.49 0 .9-.1 1.21-.348.31-.249.47-.598.47-1.095 0-.298-.06-.547-.17-.746-.1-.199-.25-.348-.43-.448-.18-.099-.37-.199-.59-.248-.23-.05-.46-.05-.7-.05H3.13v2.935h3.943zm.21 4.726c.27 0 .52-.05.77-.1.25-.05.46-.149.65-.298.19-.149.34-.298.45-.547.12-.249.17-.547.17-.896 0-.697-.19-1.194-.57-1.492-.37-.299-.87-.448-1.48-.448H3.13v3.781h4.153zM20.935 16.7c-.39.448-.85.746-1.39.995-.54.249-1.12.348-1.74.348-.67 0-1.27-.099-1.82-.348-.54-.249-1-.547-1.38-.995-.38-.398-.68-.896-.89-1.443-.21-.547-.32-1.144-.32-1.791 0-.647.11-1.244.32-1.791.21-.547.51-1.045.89-1.443.38-.398.84-.696 1.38-.945.54-.249 1.15-.348 1.82-.348.66 0 1.24.099 1.74.348.5.249.92.547 1.25.945.33.398.57.896.73 1.443.16.547.22 1.144.22 1.79v.597h-6.21c.06.697.31 1.244.74 1.592.43.348.95.547 1.56.547.52 0 .95-.099 1.29-.348.34-.249.63-.547.85-.945l1.75.747zM17.6 11.874c-.06-.597-.28-1.094-.65-1.443-.37-.348-.87-.497-1.46-.497-.36 0-.67.05-.94.149-.28.099-.51.249-.7.448-.19.199-.34.398-.43.646-.1.249-.16.498-.19.747H17.6zm-2.1-5.175h4.89v1.194h-4.89V6.7z"/></svg>
-        </a>
+      <div class="footer-bottom">
+        <p>© 2026 <a href="#hero">devRasen</a>. All rights reserved.</p>
+        <p>Made with ❤️ in Dhaka</p>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 <a href="#hero">devRasen</a>. All rights reserved.</p>
-      <p>Made with ❤️ in Dhaka</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<!-- Back to Top -->
-<button id="btt" aria-label="Back to top">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
+  <!-- Back to Top -->
+  <button id="btt" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
