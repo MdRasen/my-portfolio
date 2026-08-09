@@ -90,6 +90,14 @@ function initCursor() {
 }
 
 /* ══════════════════════ NAVBAR ══════════════════════════════════════ */
+window.closeMob = function() {
+  const burger = document.getElementById('burger');
+  const mobNav = document.getElementById('mob-overlay');
+  burger && burger.classList.remove('open');
+  mobNav && mobNav.classList.remove('open');
+  document.body.style.overflow = '';
+};
+
 function initNavbar() {
   const nav     = document.getElementById('navbar');
   const burger  = document.getElementById('burger');
@@ -110,17 +118,11 @@ function initNavbar() {
       mobNav.classList.toggle('open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     });
-    mobClose.addEventListener('click', () => window.closeMob && window.closeMob());
-    mobNav.addEventListener('click', e => { if (e.target === mobNav) window.closeMob && window.closeMob(); });
+    mobClose && mobClose.addEventListener('click', () => window.closeMob());
+    mobNav.addEventListener('click', e => { if (e.target === mobNav) window.closeMob(); });
   }
 
-  window.closeMob = function() {
-    burger && burger.classList.remove('open');
-    mobNav  && mobNav.classList.remove('open');
-    document.body.style.overflow = '';
-  };
-
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') window.closeMob && window.closeMob(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') window.closeMob(); });
 }
 
 function updateActiveLink() {

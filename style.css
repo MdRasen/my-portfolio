@@ -41,10 +41,10 @@
 
 /* ── RESET ───────────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
+html{scroll-behavior:smooth;font-size:16px;overflow-x:hidden;max-width:100%}
 body{
   font-family:var(--font);background:var(--bg);color:var(--t1);
-  line-height:1.6;overflow-x:hidden;
+  line-height:1.6;overflow-x:hidden;max-width:100%;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
 }
 a{text-decoration:none;color:inherit}
@@ -887,7 +887,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:56px clam
 }
 .footer-bottom a{color:var(--blue)}
 
-@media(max-width:412px){
+@media (max-width: 412px){
   .footer-bottom{
     flex-direction:column;
     align-items:center;
@@ -924,13 +924,13 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:56px clam
 /* ── RESPONSIVE ──────────────────────────────────────────────────── */
 
 /* Medium desktop / small laptop: ≤ 1200px */
-@media(max-width:1200px){
+@media (max-width: 1200px){
   .about-grid{grid-template-columns:320px 1fr}
   .hero-inner{gap:40px}
 }
 
 /* Tablet landscape: ≤ 1024px */
-@media(max-width:1024px){
+@media (max-width: 1024px){
   /* Hero — single column, centred */
   .hero-inner{
     grid-template-columns:1fr;
@@ -976,7 +976,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:56px clam
 }
 
 /* Tablet portrait: ≤ 768px */
-@media(max-width:768px){
+@media (max-width: 768px){
   #hero{padding-top:80px;padding-bottom:40px;min-height:auto}
   .nav-links,.nav-cta{display:none}
   .burger{display:flex}
@@ -1025,7 +1025,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:56px clam
 }
 
 /* Mobile large: ≤ 600px */
-@media(max-width:600px){
+@media (max-width: 600px){
   .hero-title{font-size:clamp(1.9rem,7vw,2.6rem)}
   .section-title{font-size:clamp(1.6rem,6vw,2rem)}
   .about-grid{gap:24px}
@@ -1041,7 +1041,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:56px clam
 }
 
 /* Mobile standard: ≤ 480px */
-@media(max-width:480px){
+@media (max-width: 480px){
   .hero-title{font-size:clamp(1.75rem,6.5vw,2.2rem)}
   .section-title{font-size:1.75rem}
   .hero-bio{font-size:.9rem;line-height:1.75}
@@ -1080,7 +1080,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:56px clam
 }
 
 /* Mobile small: ≤ 360px */
-@media(max-width:360px){
+@media (max-width: 360px){
   .hero-title{font-size:1.65rem}
   .section-title{font-size:1.5rem}
   .info-cards{grid-template-columns:1fr}
